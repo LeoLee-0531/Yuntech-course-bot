@@ -48,7 +48,7 @@ class CourseMonitor:
                 'table', {'id': 'ctl00_MainContent_Course_GridView'})
 
             if not table:
-                logger.debug("查無課程表格元素，可能是頁面結構變動或查無結果")
+                logger.error("查無課程表格元素，可能是頁面結構變動或查無結果")
                 return {}
 
             rows = table.find_all('tr')[1:]  # 跳過表頭

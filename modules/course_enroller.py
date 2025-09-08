@@ -4,13 +4,13 @@ from modules.logger import logger
 from modules.browser_manager import browser_manager
 from modules.captcha_solver import captcha_solver
 from modules.exceptions import EnrollmentFailedError, CourseNotFoundError, PageLoadError, CaptchaError, BrowserError
-from config import MAX_CONCURRENT_ENROLLS, RETRY_TIMES, SELECTION_URL
+from config import RETRY_TIMES, SELECTION_URL
 
 
 class CourseEnroller:
     def __init__(self):
         # TODO: 最多只能有一個選課頁面，所以要把平行取消
-        self.max_concurrent = MAX_CONCURRENT_ENROLLS
+        self.max_concurrent = 1
         self.enrolling_courses = set()
         self.enroll_semaphore = asyncio.Semaphore(self.max_concurrent)
 

@@ -52,7 +52,6 @@ def validate_config():
             warnings.append(f"{name} 必須是有效的整數，已設置為 {default}")
 
     _read_int("MONITOR_INTERVAL", 5)
-    _read_int("MAX_CONCURRENT_ENROLLS", 3)
     _read_int("RETRY_TIMES", 3)
     _read_int("SESSION_CHECK_INTERVAL", 300)
 
@@ -74,7 +73,6 @@ TARGET_COURSES = [c.strip() for c in os.getenv(
     "TARGET_COURSES", "").split(",") if c.strip()]
 
 MONITOR_INTERVAL = int(os.getenv("MONITOR_INTERVAL", 5))
-MAX_CONCURRENT_ENROLLS = int(os.getenv("MAX_CONCURRENT_ENROLLS", 3))
 RETRY_TIMES = int(os.getenv("RETRY_TIMES", 3))
 SESSION_CHECK_INTERVAL = int(os.getenv("SESSION_CHECK_INTERVAL", 300))
 

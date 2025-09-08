@@ -1,6 +1,6 @@
 # 雲科大搶課機器人
 
-> 雲科這什麼鬼選課系統，我都選不到課，逼我出大絕是吧
+> 雲科這什麼鬼選課系統，我都選不到課
 
 ## 功能特色
 
@@ -43,46 +43,17 @@ uv sync
 uv run playwright install chromium
 ```
 
-### 4. 安裝 Tesseract OCR
-
-#### Windows:
-
-1. 下載並安裝 [Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki)
-2. 將 Tesseract 安裝路徑加入系統 PATH
-
-#### macOS:
-
-```bash
-brew install tesseract
-```
-
-#### Ubuntu/Debian:
-
-```bash
-sudo apt-get install tesseract-ocr
-```
-
 ## 設定
 
-### 1. 修改 config.py
+### 1. 建立 .env
+複製 .env.example 並修改成自己的資訊
 
 ```python
 # 使用者設定
 USERNAME = "your_username"  # 你的學號
 PASSWORD = "your_password"  # 你的密碼
-TARGET_COURSES = ["1255", "1258", "1259"]  # 目標課程代碼
-
-# 系統設定
-MONITOR_INTERVAL = 5  # 監聽間隔 (秒)
-MAX_CONCURRENT_ENROLLS = 3  # 最大同時搶課數量
+TARGET_COURSES = 1255, 1258  # 目標課程代碼
 ```
-
-### 2. 課程代碼查詢
-
-1. 前往 [課程查詢系統](https://webapp.yuntech.edu.tw/WebNewCAS/Course/QueryCour.aspx)
-2. 搜尋你要的課程
-3. 記下課程的「學期課號」(例如: 1255, 1258)
-4. 將課程代碼加入 `TARGET_COURSES` 清單
 
 ## 使用方法
 
@@ -91,11 +62,6 @@ MAX_CONCURRENT_ENROLLS = 3  # 最大同時搶課數量
 ```bash
 # 使用 uv 執行
 uv run python main.py
-
-# 或先啟動虛擬環境再執行
-source .venv/bin/activate  # Linux/macOS
-# 或 .venv\Scripts\activate  # Windows
-python main.py
 ```
 
 ### 2. 程式運行流程
@@ -109,45 +75,6 @@ python main.py
 ### 3. 停止程式
 
 按 `Ctrl+C` 即可安全停止程式
-
-## 開發相關
-
-### 新增套件
-
-```bash
-# 新增運行時依賴
-uv add requests
-
-# 新增開發依賴
-uv add --dev pytest
-```
-
-### 移除套件
-
-```bash
-uv remove package_name
-```
-
-### 更新套件
-
-```bash
-uv sync --upgrade
-```
-
-## 日誌說明
-
-程式會在終端顯示即時狀態，同時將日誌寫入 `course_bot.log` 檔案。
-
-### 日誌範例:
-
-```
-[2024-09-05 14:30:15] [INFO] 開始登入校務系統...
-[2024-09-05 14:30:18] [SUCCESS] 登入成功
-[2024-09-05 14:30:20] [INFO] 開始監聽課程: ['1255', '1258', '1259']
-[2024-09-05 14:30:25] [INFO] 課程 1255 (電機工程概論): 120/135 人 (剩餘 15 個名額)
-[2024-09-05 14:30:25] [ALERT] 課程 1258 有空位！剩餘 30 個名額
-[2024-09-05 14:30:28] [SUCCESS] 課程 1258 選課成功！
-```
 
 ## 檔案結構
 
